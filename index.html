@@ -385,13 +385,14 @@
         </div>
 
         <!-- RIGHT -->
-        <form class="contact-form">
+        <form id="contact-form" class="contact-form">
 
-          <input type="text" placeholder="Your Name" required>
+          <input type="text" name="from_name" placeholder="Your Name" required>
 
-          <input type="email" placeholder="Your Email" required>
+          <input type="email" name="from_email" placeholder="Your Email" required>
 
-          <textarea rows="6" placeholder="Your Message"></textarea>
+          <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+          <div id="form-message"></div>
 
           <button type="submit" class="btn">
             Send Message
@@ -415,6 +416,7 @@
 
     <!-- AOS -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <!-- JS -->
     <script src="script.js"></script>

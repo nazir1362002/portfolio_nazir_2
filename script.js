@@ -51,3 +51,59 @@ if (typeof AOS !== "undefined") {
     once: true
   });
 }
+//Email js Setup
+emailjs.init("K1gfmeXvb_tJ8yYfp");
+
+const form = document.getElementById("contact-form");
+const formMessage = document.getElementById("form-message");
+
+
+
+form.addEventListener("submit", function (e) {
+
+  e.preventDefault();
+  const submitBtn = form.querySelector("button");
+
+  submitBtn.innerHTML =
+    '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+  submitBtn.disabled = true;
+
+  emailjs.sendForm(
+    "service_c32vcoh",
+    "template_j498l2l",
+    form
+  )
+    .then(() => {
+
+      formMessage.style.display = "block";
+      formMessage.className = "success-message";
+      formMessage.innerHTML =
+        "✓ Message sent successfully! I'll get back to you soon.";
+
+      form.reset();
+      // Restore button
+      submitBtn.innerText = "Send Message";
+      submitBtn.disabled = false;
+      setTimeout(() => {
+        formMessage.style.display = "none";
+      }, 5000);
+
+    })
+    .catch((error) => {
+
+      formMessage.style.display = "block";
+      formMessage.className = "error-message";
+      formMessage.innerHTML =
+        "✕ Something went wrong. Please try again.";
+
+      console.error(error);
+      // Restore button
+      submitBtn.innerText = "Send Message";
+      submitBtn.disabled = false;
+      setTimeout(() => {
+        formMessage.style.display = "none";
+      }, 5000);
+
+    });
+
+});
